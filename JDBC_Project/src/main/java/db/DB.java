@@ -17,6 +17,7 @@ public class DB {
                 String url = props.getProperty("dburl");
                 conn = DriverManager.getConnection(url, props);
                 System.out.println("abrindo conexão...");
+                System.out.println(conn.getCatalog());
             } catch(SQLException e){
                 throw new DbException(e.getMessage());
             }
