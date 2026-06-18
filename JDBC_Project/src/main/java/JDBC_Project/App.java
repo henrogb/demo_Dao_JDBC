@@ -5,10 +5,13 @@ import java.sql.SQLException;
 import db.DB;
 import db.DbException;
 import entities.Departament;
+import entities.Seller;
 
 public class App {
     public static void main(String[] args) {
         Departament d = new Departament(1, "livros");
-        System.out.println(d);
+        Seller s = new Seller();
+
+        System.out.println(s);
     }
 }
