@@ -10,7 +10,7 @@ public class Departament implements Serializable{
 
      @Override
     public String toString() {
-        return "Departament id= " + id + ", nome= " + nome ;
+        return "Departament:\nid= " + id + "\nnome= " + nome ;
     }
 
      @Override
