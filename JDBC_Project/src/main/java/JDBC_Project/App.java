@@ -14,9 +14,7 @@ public class App {
     public static void main(String[] args) {
         SellerDao sd = DaoFactory.createSellerDao();
 
-        Departament dp = new Departament(2, null);
-
-        List<Seller> sellers = sd.findByDepartament(dp);
+        List<Seller> sellers = sd.findAll();
         for (Seller seller : sellers){
             System.out.println(seller);
         }
