@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import dao.SellerDao;
-import db.DB;
 import db.DbException;
 import entities.Departament;
 import entities.Seller;
@@ -51,14 +49,8 @@ public class SellerDaoJDBC implements SellerDao {
             rs = ps.executeQuery();
 
             if (rs.next()){
-                Departament dep = new instantiateDepartament();
-                Seller obj = new Seller();
-                obj.setId(rs.getInt("Id"));
-                obj.setName(rs.getString("Name"));
-                obj.setEmail(rs.getString("Email"));
-                obj.setBaseSalary(rs.getDouble("BaseSalary"));
-                obj.setBithDate(rs.getDate("BirthDate"));
-                obj.setDepartament(dep);
+                Departament dep = instantiateDepartament(rs);
+                Seller obj = instantiateSeller(rs, dep);
                 return obj;
             }
             return null;
@@ -66,6 +58,17 @@ public class SellerDaoJDBC implements SellerDao {
             throw new DbException(e.getMessage());
         } 
 
+    }
+
+    private Seller instantiateSeller(ResultSet rs, Departament dp) throws SQLException {
+        Seller obj = new Seller();
+                obj.setId(rs.getInt("Id"));
+                obj.setName(rs.getString("Name"));
+                obj.setEmail(rs.getString("Email"));
+                obj.setBaseSalary(rs.getDouble("BaseSalary"));
+                obj.setBithDate(rs.getDate("BirthDate"));
+                obj.setDepartament(dp);
+                return obj;
     }
 
     private Departament instantiateDepartament(ResultSet rs) throws SQLException{
