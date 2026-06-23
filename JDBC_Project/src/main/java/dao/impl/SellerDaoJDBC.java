@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import dao.SellerDao;
 import db.DbException;
 import entities.Departament;
@@ -58,8 +57,32 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void update(Seller obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        PreparedStatement st = null;
+        try{
+            st = conn.prepareStatement(
+                "UPDATE seller "
+                + "SET Name= ?, Email = ?, BirthDate= ?, BaseSalary= ?, DepartmentId= ? "
+                + "WHERE Id= ?", Statement.RETURN_GENERATED_KEYS
+            );
+
+            st.setString(1, obj.getName());
+            st.setString(2, obj.getEmail());
+            st.setDate(3, new java.sql.Date(obj.getBithDate().getTime()));
+            st.setDouble(4, obj.getBaseSalary());
+            st.setInt(5, obj.getDepartament().getId());
+            st.setInt(6, obj.getId());
+
+            int rowsAffectd = st.executeUpdate();
+
+            if(rowsAffectd > 0){
+                System.out.println("rows affected: "+rowsAffectd + ", ID: " +obj.getId());
+            } else{
+                System.out.println("houve um erro ao executar a tarefa");
+            }
+
+        }catch(SQLException e){
+            throw new DbException(e.getMessage());
+        }
     }
 
     @Override

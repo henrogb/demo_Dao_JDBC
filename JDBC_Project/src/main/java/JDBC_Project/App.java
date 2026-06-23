@@ -16,8 +16,7 @@ public class App {
         SellerDao sd = DaoFactory.createSellerDao();
         Departament dp = new Departament(2, null);
 
-        Seller seller = new Seller(null, "Henro", "henrogb@gmail.com", new Date(), 4000.00, dp);
-        sd.insert(seller);  
-        System.out.println("new Seller Id: "+ seller.getId());
+        Seller seller = new Seller(10, "Gilso", "henzogilso@gmail.com", new Date(), 7000.00, dp);
+        sd.update(seller);  
     }
 }

@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-
 import entities.Departament;
 import entities.Seller;
 
