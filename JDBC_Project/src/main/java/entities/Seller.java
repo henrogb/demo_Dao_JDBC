@@ -13,35 +13,10 @@ public class Seller implements Serializable{
     private Double baseSalary;
     private Departament departament;
 
-    @Override
-    public String toString() {
-        return "Seller:\nid= " + id + "\nname= " + name + "\nemail= " + email + "\nbithDate= " + bithDate + "\nbaseSalary= "
-                + baseSalary + "\ndepartament |\n" + departament ;
-    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Seller other = (Seller) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+    public Seller(){
+
     }
 
     public Seller(Integer id, String name, String email, Date bithDate, Double baseSalary, Departament departament) {
@@ -101,8 +76,37 @@ public class Seller implements Serializable{
         this.departament = departament;
     }
 
-    public Seller(){
+    
 
+    @Override
+    public String toString() {
+        return "Seller:\nid= " + id + "\nname= " + name + "\nemail= " + email + "\nbithDate= " + bithDate + "\nbaseSalary= "
+                + baseSalary + "\ndepartament |\n" + departament ;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Seller other = (Seller) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
     }
 
     
