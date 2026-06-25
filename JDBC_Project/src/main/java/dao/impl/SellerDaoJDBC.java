@@ -87,9 +87,31 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Seller obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement(
+                "DELETE FROM seller "
+                + "WHERE Id = ? ", Statement.RETURN_GENERATED_KEYS
+            );
+
+            st.setInt(1, obj.getId());
+
+            int rowsAffectd = st.executeUpdate();
+
+            if(rowsAffectd > 0){
+                ResultSet rs = st.getGeneratedKeys();
+                System.out.println("Linha " + rs + " foi alterada!");
+            } else{
+                System.out.println("Erro ao executar delete");
+            }
+
+
+            
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
     }
+
 
     @Override
     public Seller findById(Integer id) {
