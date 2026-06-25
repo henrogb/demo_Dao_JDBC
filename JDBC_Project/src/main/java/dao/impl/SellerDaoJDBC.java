@@ -100,9 +100,9 @@ public class SellerDaoJDBC implements SellerDao {
 
             if(rowsAffectd > 0){
                 ResultSet rs = st.getGeneratedKeys();
-                System.out.println("Linha " + rs + " foi alterada!");
+                System.out.println(rowsAffectd + "Linhas foram afetadas!");
             } else{
-                System.out.println("Erro ao executar delete");
+                System.out.println("nenhuma linha foi afetada!");
             }
 
 
